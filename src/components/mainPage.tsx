@@ -47,7 +47,6 @@ const MainPage: React.FC = () => {
         }
     };
 
-
     const handleSearch = () => {
         fetchPosts(true);
     };
