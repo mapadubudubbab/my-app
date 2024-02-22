@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import HomePage from './components/homePage';
+import MainPage from './components/mainPage';
+import SignUpPage from './components/signUpPage';
+import EmailCheckPage from './components/emailCheckPage';
+import NewPasswordPage from './components/newPasswordPage';
+import UploadPage from './components/uploadPage';
+import MyPage from './components/myPage';
+import PostPage from './components/postPage';
+import EditPage from './components/editPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/main" element={<ProtectedRoute><MainPage /></ProtectedRoute>} />
+          <Route path='/signup' element={<SignUpPage />} />
+          <Route path='/email-check' element={<EmailCheckPage />} />
+          <Route path='/reset-password' element={<NewPasswordPage />} />
+          <Route path='/upload' element={<ProtectedRoute><UploadPage /></ProtectedRoute>} />
+          <Route path='/my-page' element={<ProtectedRoute><MyPage /></ProtectedRoute>} />
+          <Route path='/post/:postId' element={<ProtectedRoute><PostPage /></ProtectedRoute>} />
+          <Route path='/post/edit/:postId' element={<ProtectedRoute><EditPage /></ProtectedRoute>} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 
